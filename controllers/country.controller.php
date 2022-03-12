@@ -41,4 +41,16 @@ class CountryController
         $this->conexion->cerrarConexion();
         return $paises;
     }
+
+    public function getCountryById($filter)
+    {
+        $this->conexion->conectar();
+        $this->conexion->ejecutar($this->countryDAO->getCountryById($filter));
+        $pais = array();
+        while (($registro = $this->conexion->extraer()) != null) {
+            $pais = new CountryController($registro[0], $registro[1], $registro[2]);
+        }
+        $this->conexion->cerrarConexion();
+        return $pais;
+    }
 }

@@ -18,4 +18,9 @@ class CountryDAO
     {
         return "SELECT * FROM country";
     }
+
+    public function getCountryById($filter)
+    {
+        return "SELECT * FROM country WHERE id_country = '" . $filter . "'";
+    }
 }
